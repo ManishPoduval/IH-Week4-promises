@@ -12,6 +12,16 @@ function getStudents(){
     })
     return myPromise;
 }
+
+function getInstructors(){
+    let myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let instructors = require('./instructors')
+            resolve(instructors)
+        }, 2000)
+    })
+    return myPromise;
+}
 // ------------------------------
 
 
@@ -30,14 +40,17 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     getStudents()
         .then((students) => {
-            console.log(students)
             res.render(__dirname + '/views/home.hbs', {students});
         })
 
 })
 
 app.get('/about', (req, res) => {
-    res.render(__dirname + '/views/about.hbs');
+    getInstructors()
+    .then((students) => {
+        res.render(__dirname + '/views/about.hbs', {instructors});
+    })
+
 })
 
 //create the server on port 3000
