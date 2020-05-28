@@ -1,6 +1,20 @@
 let express = require('express')
 let app = express();
 
+
+
+function getStudents(){
+    let myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let students = require('./data.js')
+            resolve(students)
+        }, 2000)
+    })
+    return myPromise;
+}
+
+
+
 //let express know what template engine you're using.
 app.set('view engine', 'hbs');
 
@@ -10,7 +24,7 @@ app.use(express.static('public'))
 //define the routes
 app.get('/', (req, res) => {
     // .render always for a template engine
-    res.render(__dirname + '/views/landing.hbs');
+    res.render(__dirname + '/views/landing.hbs', {layout: false});
 })
 
 app.get('/home', (req, res) => {
