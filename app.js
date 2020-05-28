@@ -2,7 +2,7 @@ let express = require('express')
 let app = express();
 
 
-
+// IGNORE THE CODE HERE --------
 function getStudents(){
     let myPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -12,7 +12,7 @@ function getStudents(){
     })
     return myPromise;
 }
-
+// ------------------------------
 
 
 //let express know what template engine you're using.
@@ -28,7 +28,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', (req, res) => {
-    res.render(__dirname + '/views/home.hbs');
+    getStudents()
+        .then((students) => {
+            console.log(students)
+            res.render(__dirname + '/views/home.hbs', {students});
+        })
+
 })
 
 app.get('/about', (req, res) => {
