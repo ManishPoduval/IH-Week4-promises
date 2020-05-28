@@ -1,7 +1,5 @@
 <div>Hey, inside HOME page</div>
 {{#each students}}
-    <p>{{this.name}}</p>
-    <p>{{this.planet}}</p>
-    <p>{{this.food}}</p>
+{{> info this}}
 {{/each}}
 <footer>Hey this is the footer</footer>

@@ -1,5 +1,8 @@
 let express = require('express')
 let app = express();
+let hbs = require('hbs');
+
+hbs.registerPartials(__dirname + '/views/partials');
 
 
 // IGNORE THE CODE HERE --------
@@ -22,9 +25,8 @@ function getInstructors(){
     })
     return myPromise;
 }
+
 // ------------------------------
-
-
 //let express know what template engine you're using.
 app.set('view engine', 'hbs');
 
