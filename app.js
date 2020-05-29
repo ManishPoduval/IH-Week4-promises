@@ -4,6 +4,7 @@ let hbs = require('hbs');
 let bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 hbs.registerPartials(__dirname + '/views/partials');
 
