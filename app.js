@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 hbs.registerPartials(__dirname + '/views/partials');
 
-
+let name = '';
 // IGNORE THE CODE HERE --------
 function getStudents(){
     let myPromise = new Promise((resolve, reject) => {
@@ -42,10 +42,14 @@ app.get('/home', (req, res) => {
 
 })
 
+app.get('/about', (req, res) => {
+    res.render(__dirname + '/views/about.hbs', {name})
+});
 
 app.post('/home', (req, res) => {
     console.log(req.body)
-    console.log('Hello Post might work!')
+    name = req.body.myName
+    res.redirect('/about')
 })
 
 
