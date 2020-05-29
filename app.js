@@ -35,6 +35,7 @@ app.use(express.static('public'))
 
 //define the routes
 app.get('/', (req, res) => {
+    console.log(req.query)
     // .render always for a template engine
     res.render(__dirname + '/views/landing.hbs', {layout: false});
 })
@@ -47,13 +48,11 @@ app.get('/home', (req, res) => {
 
 })
 
-app.get('/about', (req, res) => {
-    getInstructors()
-    .then((students) => {
-        res.render(__dirname + '/views/about.hbs', {instructors});
-    })
 
+app.post('/home', (req, res) => {
+    console.log('Hello Post might work!')
 })
+
 
 //create the server on port 3000
 app.listen('3000', () => {
