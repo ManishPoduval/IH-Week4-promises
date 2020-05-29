@@ -1,6 +1,9 @@
 let express = require('express')
 let app = express();
 let hbs = require('hbs');
+let bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
 
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -11,16 +14,6 @@ function getStudents(){
         setTimeout(() => {
             let students = require('./data.js')
             resolve(students)
-        }, 2000)
-    })
-    return myPromise;
-}
-
-function getInstructors(){
-    let myPromise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let instructors = require('./instructors')
-            resolve(instructors)
         }, 2000)
     })
     return myPromise;
@@ -50,6 +43,7 @@ app.get('/home', (req, res) => {
 
 
 app.post('/home', (req, res) => {
+    console.log(req.body)
     console.log('Hello Post might work!')
 })
 
